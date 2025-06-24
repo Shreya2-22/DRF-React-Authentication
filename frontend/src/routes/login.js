@@ -10,12 +10,14 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import {login} from '../endpoints/api';
+import { useAuth } from "../contexts/useAuth";
 
 const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin = () => {login(username, password)}
+  const {login_user} = useAuth();
+  const handleLogin = () => {login_user(username, password)}
 
   return (
     <Box
