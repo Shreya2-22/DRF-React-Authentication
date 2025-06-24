@@ -84,3 +84,9 @@ def get_notes(request):
     return Response(serializer.data)
 
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def is_authenticated(request):
+    return Response({'is_authenticated': True})
+
+
