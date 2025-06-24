@@ -1,16 +1,19 @@
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Login from './routes/login';
-import { ChakraProvider, defaultSystem } from '@chakra-ui/react';
-import Menu from './routes/menu';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./routes/login";
+import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
+import Menu from "./routes/menu";
+import { AuthProvider } from "./contexts/useAuth";
 
 function App() {
   return (
     <ChakraProvider value={defaultSystem}>
       <Router>
-        <Routes>
-          <Route path='/login' element={<Login/>} />
-          <Route path='/' element={<Menu/>} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Menu />} />
+          </Routes>
+        </AuthProvider>
       </Router>
     </ChakraProvider>
   );
