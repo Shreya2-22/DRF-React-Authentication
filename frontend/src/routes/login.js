@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import {login} from '../endpoints/api';
 import { useAuth } from "../contexts/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
@@ -18,6 +19,11 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const {login_user} = useAuth();
   const handleLogin = () => {login_user(username, password)}
+  const nav = useNavigate();
+
+  const handleRegisterRedirect = () => {
+    nav('/register');
+  };
 
   return (
     <Box
@@ -89,7 +95,7 @@ const Login = () => {
             <Box textAlign="center">
               <Text color="gray.500" fontSize="sm">
                 Don't have an account?
-                <Text as="span" color="blue.500" cursor="pointer" ml={1}>
+                <Text as="span" color="blue.500" cursor="pointer" ml={1} onClick={handleRegisterRedirect}>
                   Sign up
                 </Text>
               </Text>

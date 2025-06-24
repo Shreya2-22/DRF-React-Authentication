@@ -6,6 +6,7 @@ const REFRESH_URL = `${BASE_URL}token/refresh/`;
 const NOTES_URL = `${BASE_URL}notes/`;
 const LOGOUT_URL = `${BASE_URL}logout/`;
 const AUTH_URL = `${BASE_URL}authenticated/`;
+const REGISTER_URL = `${BASE_URL}register/`;
 
 export const login = async (username, password) => {
     const response = await axios.post(LOGIN_URL, {
@@ -59,6 +60,19 @@ export const is_authenticated = async() => {
         await axios.post(AUTH_URL, {}, {withCredentials:true})
         return true;
     }catch(error){
+        return false;
+    }
+}
+
+export const register = async (username, email, password) => {
+    try {
+        await axios.post(REGISTER_URL, {
+            username:username,
+            email:email,
+            password:password
+        }, {withCredentials: true});
+        return true;
+    } catch (error) {
         return false;
     }
 }
